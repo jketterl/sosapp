@@ -1,0 +1,16 @@
+<html><head>
+    <title>Scrum of Scrums</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var $button = $('#start');
+            $button.click(function(){
+                console.info('lets have some fun!');
+                $.ajax('/rest/start');
+            });
+        });
+    </script>
+</head><body>
+    Push the button for some fun!
+    <button id="start">Start Scrum of Scrums!</button>
+</body></html>
