@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -31,6 +36,8 @@ public class HomeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        processGcmRegistration();
+
         Button triggerButton = (Button) findViewById(R.id.triggerButton);
         triggerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +45,35 @@ public class HomeActivity extends ActionBarActivity {
                 bindService(new Intent(HomeActivity.this, SosService.class), conn, Context.BIND_AUTO_CREATE);
             }
         });
+    }
+
+    private void processGcmRegistration() {
+        final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+        new AsyncTask<Object, Object, Object>() {
+
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                try {
+                    final String regId = gcm.register("996547710971");
+
+                    ServiceConnection conn = new ServiceConnection() {
+                        @Override
+                        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                            ((SosService.LocalBinder) iBinder).getService().register(regId);
+                            unbindService(this);
+                        }
+
+                        @Override
+                        public void onServiceDisconnected(ComponentName componentName) {}
+                    };
+
+                    bindService(new Intent(HomeActivity.this, SosService.class), conn, Context.BIND_AUTO_CREATE);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }.execute();
     }
 
 

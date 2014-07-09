@@ -52,9 +52,13 @@ public class SosService extends Service {
         }
     }
 
-    /*
-    public void register() {
-
+    public void register(String regId) {
+        Log.d("SosService", "registering with id " + regId);
+        try {
+            URL registration = new URL("http://sosapp.justjakob.de/rest/register?platform=android&regid=" + regId);
+            new Http().execute(registration);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
-    */
 }
