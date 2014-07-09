@@ -1,17 +1,43 @@
 package de.justjakob.sosapp;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class HomeActivity extends ActionBarActivity {
+
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            ((SosService.LocalBinder) iBinder).getService().triggerSos();
+            unbindService(this);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {}
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Button triggerButton = (Button) findViewById(R.id.triggerButton);
+        triggerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bindService(new Intent(HomeActivity.this, SosService.class), conn, Context.BIND_AUTO_CREATE);
+            }
+        });
     }
 
 

@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Scrum of Scrums</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="trigger_sos">Trigger Scrum of Scrums NOW!</string>
 
 </resources>
