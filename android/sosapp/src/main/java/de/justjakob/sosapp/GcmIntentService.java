@@ -40,7 +40,7 @@ public class GcmIntentService extends IntentService{
         b.setContentTitle("Scrum of Scrums")
          .setContentText("Scrum of Scrums is starting!")
          .setWhen(System.currentTimeMillis())
-         .setSmallIcon(R.drawable.abc_ic_go)
+         .setSmallIcon(R.drawable.ic_notification)
          .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
          .setAutoCancel(true)
          .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
