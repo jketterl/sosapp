@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -42,8 +43,9 @@ public class GcmIntentService extends IntentService{
          .setWhen(System.currentTimeMillis())
          .setSmallIcon(R.drawable.ic_notification)
          .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
+         .setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.gong))
          .setAutoCancel(true)
-         .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+         .setDefaults(Notification.DEFAULT_VIBRATE)
          .setContentIntent(homeIntent);
         
         nm.notify(NOTIFICATION_ID, b.build());
