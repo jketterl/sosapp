@@ -10,6 +10,7 @@
   "license": "GPL",
   "dependencies": {
     "ejs": "^1.0.0",
-    "express": "^4.5.1"
+    "express": "^4.5.1",
+    "node-mysql": "^0.3.7"
   }
 }
