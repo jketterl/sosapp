@@ -3,14 +3,7 @@
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script>
-        $(function(){
-            var $button = $('#start');
-            $button.click(function(){
-                $.ajax('/rest/start', {cache: false});
-            });
-        });
-    </script>
+    <script src="/assets/javascript/main.js"></script>
 </head><body><div class="container">
     <h1>Scrum of Scrums</h1>
     <div class="row">
@@ -27,6 +20,14 @@
                 <h2 class="panel-heading panel-title">Join us!</h2>
                 <div class="panel-body">
                     <a href="assets/sosapp.apk">Download "Scrum of Scrums" Android App</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="display:none;" id="soshint">
+            <div class="panel panel-warning">
+                <h2 class="panel-heading panel-title">Scrum of Scrums has been triggered!</h2>
+                <div class="panel-body">
+                    Better go to the meeting NOW!
                 </div>
             </div>
         </div>

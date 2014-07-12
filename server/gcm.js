@@ -47,7 +47,7 @@ GCM.prototype.sendBroadcast = function(message){
 
             req.write(JSON.stringify({
                 registration_ids:registrations,
-                data:message
+                data:JSON.parse(message)
             }));
 
             req.end();

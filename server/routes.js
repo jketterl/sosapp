@@ -1,4 +1,5 @@
-var gcm = require('./gcm');
+var gcm = require('./gcm'),
+    broadcaster = require('./broadcaster');
 
 module.exports = function(app){
     app.get('/', function(req, res){
@@ -7,7 +8,7 @@ module.exports = function(app){
 
     app.get('/rest/start', function(req, res){
         console.info('somebody pressed the SOS button! alert! alert!');
-        gcm.sendBroadcast({sos:'started'});
+        broadcaster.send({sos:'started'});
         res.json({success:true});
     });
 
